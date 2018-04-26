@@ -86,9 +86,13 @@ main_page_head = '''
         });
         $(document).on('click', '.rating-star', function (event) {
           event.stopPropagation();
-          $(this).addClass('glyphicon-star').removeClass('glyphicon-star-empty');
-          $(this).prevAll().addClass('glyphicon-star').removeClass('glyphicon-star-empty');
-          $(this).nextAll().addClass('glyphicon-star-empty').removeClass('glyphicon-star');
+          if ($(this).prev().length === 0 & $(this).next().hasClass('glyphicon-star-empty')) {
+            $(this).toggleClass('glyphicon-star').toggleClass('glyphicon-star-empty');
+          } else {
+            $(this).addClass('glyphicon-star').removeClass('glyphicon-star-empty');
+            $(this).prevAll().addClass('glyphicon-star').removeClass('glyphicon-star-empty');
+            $(this).nextAll().addClass('glyphicon-star-empty').removeClass('glyphicon-star');
+          }
         });
     </script>
 </head>
