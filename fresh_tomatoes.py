@@ -53,6 +53,12 @@ main_page_head = '''
             top: 0;
             background-color: white;
         }
+        .glyphicon-star {
+          color: gold;
+        }
+        .glyphicon-star-empty {
+          color: gray;
+        }
     </style>
     <script type="text/javascript" charset="utf-8">
         // Pause the video when the modal is closed
@@ -77,6 +83,12 @@ main_page_head = '''
           $('.movie-tile').hide().first().show("fast", function showNext() {
             $(this).next("div").show("fast", showNext);
           });
+        });
+        $(document).on('click', '.rating-star', function (event) {
+          event.stopPropagation();
+          $(this).addClass('glyphicon-star').removeClass('glyphicon-star-empty');
+          $(this).prevAll().addClass('glyphicon-star').removeClass('glyphicon-star-empty');
+          $(this).nextAll().addClass('glyphicon-star-empty').removeClass('glyphicon-star');
         });
     </script>
 </head>
@@ -122,6 +134,13 @@ movie_tile_content = '''
 <div class="col-md-6 col-lg-4 movie-tile text-center" data-trailer-youtube-id="{trailer_youtube_id}" data-toggle="modal" data-target="#trailer">
     <img src="{poster_image_url}" width="220" height="342">
     <h2>{movie_title}</h2>
+    <div>
+      <span class="rating-star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+      <span class="rating-star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+      <span class="rating-star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+      <span class="rating-star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+      <span class="rating-star glyphicon glyphicon-star-empty" aria-hidden="true"></span>
+    </div>
 </div>
 '''
 
